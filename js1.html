@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"> haha </div>
+    <button id="btn">click</button>
+    <ul id="ul1">
+        <li class="li1">111</li>
+        <li class="li1">222</li>
+        <li>333</li>
+    </ul>
+
+
+    <script>
+   /*     var d;
+        var div = document.getElementById("div1");
+        console.log(div);
+
+        var person = new Object();
+        person.name = 'aaa';
+        person.sayHello = function(){
+            console.log("hello");
+        };
+        person.sayHello();*/
+
+        var btn1 = document.getElementById("btn");
+        btn1.onclick = function () {
+        /*    alert('haha');
+            div.style.background = '#00ff00';*/
+            var ul = document.getElementById("ul1");
+            var li = ul.getElementsByTagName('li');
+            for(var i = 0; i < li.length; i++){
+                if(li[i].className == 'li1'){
+                    li[i].style.background = '#00ff00';
+                }
+
+            }
+        };
+    </script>
+
+
+</body>
+</html>

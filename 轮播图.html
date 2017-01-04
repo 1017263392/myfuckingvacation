@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            width: 520px;
+            height: 280px;
+            position: relative;
+            margin: 100px auto;
+        }
+        #imgs img{
+            display: none;
+        }
+        #imgs .selected{
+            display: block;
+        }
+        #tab{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        #tab li{
+            width: 20px;
+            height: 20px;
+            color: white;
+            background: #000;
+            cursor: pointer;
+            text-align: center;
+            margin-right: 5px;
+            float: left;
+            line-height: 20px;
+        }
+        #tab .selected{
+            background: orange;
+        }
+        #arrows{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+        #arrows span{
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #cccccc;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            float: left;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="1.jpg" alt="图片加载失败" title="鼠标" class="selected"/>
+            <img src="2.jpg" alt="图片加载失败" title="鼠标"/>
+            <img src="3.jpg" alt="图片加载失败" title="鼠标"/>
+            <img src="4.jpg" alt="图片加载失败" title="鼠标"/>
+        </div>
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <span id="arrows">
+            <span>&lt;</span>
+            <span>&gt;</span>
+        </span>
+    </div>
+
+    <script>
+        var oTab = document.getElementById('tab');
+        var aLi = oTab.getElementsByTagName('li');
+        var oImgs = document.getElementById('imgs');
+        var aImg = oImgs.getElementsByTagName('img');
+        var oArrows = document.getElementById('arrows');
+        var oPrev = oArrows.getElementsByTagName('span')[0];
+        var oNext = oArrows.getElementsByTagName('span')[1];
+        var iNow = 0;
+        for(var i = 0; i < aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                iNow = this.index;
+                changImg()
+            }
+        }
+
+        oPrev.onclick = oNext.onclick = function () {
+            if(this == oNext){
+                iNow++;
+                if(iNow == aLi.length)
+                    iNow = 0;
+            }else{
+                iNow--;
+                if(iNow == -1)
+                    iNow = aLi.length - 1;
+            }
+            changImg();
+        }
+
+        /*计时器*/
+        var timer = setInterval(function () {
+            oNext.onclick();
+        },1000)
+
+        function changImg(){
+            for(var i = 0; i <aLi.length; i++){
+                aLi[i].className = "";
+                aImg[i].className = "";
+            }
+            aLi[iNow].className = "selected";
+            aImg[iNow].className = "selected";
+        }
+
+        var oContainer = document.getElementById('container');
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        }
+        oContainer.onmouseout = function () {
+            timer = setInterval(function(){
+                oNext.onclick();
+            },1000)
+        }
+
+
+
+    </script>
+
+</body>
+</html>
+<!--
+浮动的或定位的行级元素可以设置宽高
+-->
