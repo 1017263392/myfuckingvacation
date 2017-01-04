@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #menu{
+            width: 200px;
+            border: 1px solid #000000;
+        }
+        #menu h3{
+            width:200px;
+            height: 35px;
+            background: #000;
+            color: white;
+            line-height: 35px;
+        }
+        #menu .sub-menu{
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+    <ul id="menu">
+        <li>
+            <h3>管理区</h3>
+            <ul class="sub-menu">
+                <li>001</li>
+                <li>002</li>
+                <li>003</li>
+            </ul>
+        </li>
+        <li>
+            <h3>交流区</h3>
+            <ul class="sub-menu">
+                <li>001</li>
+                <li>002</li>
+                <li>003</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <script>
+
+        var oMenu = document.getElementById('menu');
+        var aH3 = oMenu.getElementsByTagName('h3');
+        /*  IE中 this.nextSibling 可以直接得到兄弟节点   ，  元素节点类型是1  空格是文本节点类型是3 注释是8
+        IE中没有文本节点的概念  在其他浏览器上面语句会得到 文本节点
+        this.nextElementSibling在Google中可用在IE中不可用
+        */
+        for(var i = 0; i < aH3.length; i++){
+            aH3[i].bShow = false;  //自定义 菜单状态属性 初始状态菜单隐藏着
+            aH3[i].onclick = function(){
+                var oUl = next(this);
+                alert(oUl.style.display);//发现最开始的时候style.paly位空（不是null）所以判断是不是block不判断空
+                /*
+                使用display判断
+                if(oUl.style.display == 'block'){
+                    oUl.style.display = 'none';
+                }
+                else{
+                    oUl.style.display = 'block';
+                }*/
+                if(this.bShow){
+                    oUl.style.display = 'none';
+                }else{
+                    oUl.style.display = 'block';
+                }
+                this.bShow = !this.bShow;
+            }
+        }
+
+        function next(elem) {
+            do{
+                elem = elem.nextSibling;
+            }while(elem && elem.nodeType != 1); //if(elem)作用 : 检测elem是否有效（0，undefined，null，空字符  都是无效的）
+            return elem;
+        }
+
+    </script>
+</body>
+</html>

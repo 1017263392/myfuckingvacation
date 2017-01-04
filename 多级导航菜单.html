@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #main .main-menu{
+            float: left;
+            width: 120px;
+            height: 30px;
+            margin-right: 5px;
+            background: grey;
+        }
+        #main .main-menu-link{
+            height: 100%;/*设置a充满整个main-menu*/
+            line-height: 30px;
+            /*text-align: center;*/
+            display: block;
+        }
+        #main .sub-menu{
+            display: none;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <ul id="main">
+        <li class="main-menu">
+            <a href="#" class="main-menu-link">1link</a>
+            <ul class="sub-menu">
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <a href="#" class="main-menu-link">1link</a>
+            <ul class="sub-menu">
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <a href="#" class="main-menu-link">1link</a>
+            <ul class="sub-menu">
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+                <li><a href="#">link</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h2>hahaja</h2>
+    <script>
+        var oMenu = document.getElementById('main');
+        var ali = oMenu.getElementsByTagName('li');
+        for(var i = 0; i < ali.length; i++){
+            if(ali[i].className == 'main-menu'){
+                ali[i].onmouseover = function () {
+                  var oSubMenu = this.getElementsByTagName('ul')[0];
+                  oSubMenu.style.display = "block";
+                };
+                ali[i].onmouseout = function () {
+                    var oSunmenu = this.getElementsByTagName('ul')[0];
+                    oSunmenu.style.display = "none";
+                };
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

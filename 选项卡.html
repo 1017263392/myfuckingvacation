@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+
+        #menu{
+            height: 30px;
+        }
+        #menu li{
+            width: 120px;
+            height: 30px;
+            margin-right: 10px;
+            background: #cccccc;
+            float: left;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #container{
+            width: 400px;
+            height: 300px;
+
+            /*position: absolute;*//*body默认没有高度，宽度充满整个浏览器*/
+            /*border: 1px dashed #000000;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
+            /*margin-top: -150px;*/
+            /*margin-left: -200px;*/
+            margin: 100px auto;/*可以使用这句吧上面的注释*/
+        }
+
+        #menu .selected{
+            background: #000000;
+            color: #ffffff;
+        }
+        #content{
+            width: 400px;
+            border-top: 1px solid black;
+        }
+        #content div{
+            width: 400px;
+            height: 200px;
+            background: grey;
+            display: none;
+        }
+        #content .selected{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="menu">
+            <li class="selected">js</li>
+            <li>html</li>
+            <li>css</li>
+        </ul>
+        <div id="content">
+            <div class="selected">1111</div>
+            <div>2222</div>
+            <div>3333</div>
+        </div>
+    </div>
+
+    <script>
+        var oMenu = document.getElementById('menu');
+        var aLi = menu.getElementsByTagName('li');
+        var oContent = document.getElementById('content');
+        console.log(oContent);
+        var aDiv = oContent.getElementsByTagName('div');
+
+        for(var i = 0; i < aLi.length; i++){
+            aLi[i].index = i; //给每个li对象自定义属性，作用保存当前的li的下标
+            aLi[i].onclick = function(){
+                for(var i = 0; i < aLi.length; i++){
+                    aLi[i].className = "";
+                    aDiv[i].className = "";
+                }
+                console.log(this.index);
+                this.className = 'selected';
+                aDiv[this.index].className = 'selected';
+
+            };
+        }
+
+
+    </script>
+</body>
+</html>
+<!--
+事件：
+1.事件源
+2.事件处理函数
+3.事件对象
+
+-->
