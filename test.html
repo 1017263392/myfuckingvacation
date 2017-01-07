@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border: 0;
+        }
+        ul{
+            list-style: none;
+        }
+
+        #container{
+            width: 520px;
+            height: 280px;
+            position: relative;
+            margin: 100px auto;
+        }
+        /*图片的显示*/
+        #imgs img{
+            display: none;
+        }
+        #imgs .selected{
+            display: block;
+        }
+        /*右下角的小标签*/
+        #tab {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        #tab li{
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            text-align: center;
+            line-height: 20px;
+            background: #000000;
+            color: #cccccc;
+            float: left;
+            cursor: pointer;
+        }
+        #tab .selected{
+            background: orange;
+        }
+        /*箭头*/
+        #arrows{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+        #arrows span{
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            text-align: center;
+            line-height: 20px;
+            background: #000000;
+            color: #cccccc;
+            float: left;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="轮播图/1.jpg" alt="加载失败" class="selected"/>
+            <img src="轮播图/2.jpg" alt="加载失败"/>
+            <img src="轮播图/3.jpg" alt="加载失败"/>
+            <img src="轮播图/4.jpg" alt="加载失败"/>
+        </div>
+
+        <ul id="tab">
+            <li  class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+        <div id="arrows">
+            <span>&lt;</span>
+            <span>&gt;</span>
+        </div>
+
+    </div>
+
+
+    <script>
+        var oTab = document.getElementById('tab');
+        var aLi = document.getElementsByTagName('li');
+        var oImg = document.getElementById("imgs");
+        var aImg = oImg.getElementsByTagName('img');
+        var iNow = 0;
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                iNow = this.index;
+                changeImg();
+            }
+        }
+
+        var oArrow = document.getElementById("arrows");
+        var oPrev = document.getElementsByTagName("span")[0];
+        var oNext = document.getElementsByTagName("span")[1];
+
+        oPrev.onclick = oNext.onclick = function () {
+            if(this == oPrev){
+                iNow--;
+                if(iNow == -1)
+                    iNow = aLi.length - 1;
+
+            }else{
+                iNow++;
+                if(iNow == aLi.length)
+                    iNow = 0;
+            }
+            changeImg();
+        }
+
+        var timer = setInterval(function () {
+            oNext.onclick();
+        },1000);
+
+        var oContainer = document.getElementById('container');
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function () {
+            timer = setInterval(function () {
+                oNext.onclick();
+            },1000);
+        }
+
+        function changeImg(){
+            for(var i = 0; i < aLi.length; i++){
+                aLi[i].className = "";
+                aImg[i].className = "";
+            }
+            aLi[iNow].className = "selected";
+            aImg[iNow].className = "selected";
+        }
+
+
+
+    </script>
+
+</body>
+</html>

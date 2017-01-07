@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        img{
+            border: 0;
+        }
+
+        #container {
+            position: relative;
+            width: 520px;
+            height: 280px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        #imgs {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 2080px;
+            height: 280px;
+        }
+        #imgs img{
+            float: left;
+        }
+
+
+        #tab {
+            list-style: none;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            z-index: 9999;
+        }
+
+        #tab li{
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            float: left;
+            margin-right: 5px;
+            cursor: pointer;
+
+        }
+
+        #tab .selected{
+            background: orange;
+        }
+
+        #arrows {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            z-index: 9999;
+        }
+
+        #arrows span{
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            line-height: 20px;
+            float: left;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="1.jpg" alt="图片加载失败" title="鼠标"/>
+            <img src="2.jpg" alt="图片加载失败" title="鼠标"/>
+            <img src="3.jpg" alt="图片加载失败" title="鼠标"/>
+            <img src="4.jpg" alt="图片加载失败" title="鼠标"/>
+        </div>
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+                <span id="arrows">
+                    <span id="prev">&lt;</span>
+                    <span id="next">&gt;</span>
+                </span>
+    </div>
+    <script src="../jslib.js"></script>
+    <script>
+        var oTab = document.getElementById('tab');
+        var aLi = oTab.getElementsByTagName('li');
+        var oImgs = document.getElementById('imgs');
+        var aImg = oImgs.getElementsByTagName('img');
+        var oPrev = document.getElementById('prev');
+        var oNext = document.getElementById('next');
+        var oContainer = document.getElementById('container');
+        var imgWidth = aImg[0].offsetWidth;
+        var iNow = 0;
+        var timer;
+
+
+        for(var i = 0; i < aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                iNow = this.index;
+//                for(var i = 0; i<aLi.length;i++){
+//                    aLi[i].className = "";
+//                }
+//                this.className = "selected";
+//                animate(oImgs,{
+//                   left: -iNow * imgWidth
+//                });
+                changImg();
+            }
+        }
+
+        //追加图片1
+        oImgs.appendChild(aImg[0].cloneNode());
+        oImgs.style.width = oImgs.offsetWidth + imgWidth +'px';
+
+
+        oNext.onclick = oPrev.onclick = function () {
+            if(this == oNext){
+                iNow++;
+                if(iNow == aImg.length){
+                    iNow = 1;
+                    oImgs.style.left = '0px';
+                }
+            }else{
+                iNow--;
+                if(iNow == -1){
+                    iNow = aLi.length - 1;
+                    oImgs.style.left = - (aLi.length) * imgWidth + 'px';
+                }
+            }
+            changImg();
+        }
+
+
+        timer = setInterval(function(){
+            oNext.onclick();
+        },2500);
+
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function () {
+            timer = setInterval(function(){
+                oNext.onclick();
+            },2500);
+        };
+
+        function changImg(){
+            for(var i = 0; i<aLi.length;i++){
+                aLi[i].className = "";
+            }
+            aLi[iNow == aLi.length?0:iNow].className = 'selected';
+            animate(oImgs,{
+               left: -iNow * imgWidth
+            });
+
+        }
+
+
+
+    </script>
+</body>
+</html>
