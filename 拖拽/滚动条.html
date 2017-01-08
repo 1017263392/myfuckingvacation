@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #container{
+            position: relative;
+            width: 220px;
+            margin: 100px auto;
+            height: 200px;
+            overflow: hidden;
+            border: 1px solid black;
+        }
+        #content {
+            position: absolute;
+            width: 200px;
+            /*border: 1px solid grey;*/
+        }
+        #rollbar {
+            position: absolute;
+            width: 20px;
+            right: 0px;
+            height: 200px;
+            background: #cccccc;
+        }
+        #bar {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000000;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈hehehehehe
+        </div>
+        <div id="rollbar">
+            <div id="bar"></div>
+        </div>
+    </div>
+
+    <script>
+        var oRollbar = document.getElementById("rollbar");
+        var oBar = document.getElementById('bar');
+        var oContainer = document.getElementById('container');
+        var oContent = document.getElementById('content');
+        var radio = (oContent.offsetHeight - oContainer.offsetHeight) / (oRollbar.offsetHeight - oBar.offsetHeight);
+        console.log(oContent.offsetHeight);
+        console.log(radio);
+
+        Drag(oBar);
+        oBar.onmouseover = function(){
+            this.style.background = "orange";
+        };
+        oBar.onmouseout = function(){
+            this.style.background = "black";
+        };
+
+        function Drag(oDrag){
+            oDrag.onmousedown = function(e){
+                e = e || window.event;
+
+                //鼠标距离块边的纵距离
+                var iDisY = e.clientY - oDrag.offsetTop;
+
+                document.onmousemove = function (e) {
+                    oDrag.style.top = e.clientY - iDisY + 'px';
+                    if(oDrag.offsetTop + oDrag.offsetHeight> oContainer.offsetHeight){
+                        oDrag.style.top = oContainer.offsetHeight - oDrag.offsetHeight + 'px';
+                    }
+                    if(oDrag.offsetTop  < 0){
+                        oDrag.style.top = '0px';
+                    }
+                    oContent.style.top = -oBar.offsetTop * radio + 'px';
+                    return false;//阻止浏览器默认行为
+                };
+            };
+
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                console.log(-oBar.offsetTop * radio);
+            };
+        }
+    </script>
+</body>
+</html>
