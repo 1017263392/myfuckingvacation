@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+        }
+    </style>
 </head>
 <body>
     <div id="div1"></div>
-
     <script>
-
+        var oDiv = document.getElementById("div1");
+        oDiv.onclick = function(e){
+            e = e || window.event;
+            //获取事件源
+            var target;
+            if(e.target){
+                target = e.target;
+            }else{
+                target = e.srcElement;
+            }
+            console.log(e.clientX + "," + e.clientY);
+        };
     </script>
 </body>
 </html>
-
-<!--
-在IE下有 获取事件源的对象的不兼容问题
-e.target可以在Googlechrome下使用，IE下不兼容
--->

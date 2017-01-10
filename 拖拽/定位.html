@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #div1.divs{
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="div1" class="divs"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+
+    <script>
+        document.getElementsByClassName();
+    </script>
+</body>
+</html>
+<!--
+fixed（固定定位）：根据浏览器固定定位（在IE6、8不兼容）
+可以使用scrolltop取到滚动条高度 再根据滚动条高度使用absolute定位
+
+塌陷问题：因浮动产生的height为0  子元素浮动空间会释放
+解决方法：父元素浮动、父元素溢出隐藏、定位
+-->

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #container{
+            position: relative;
+        }
+
+        #small-img {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-right: 10px;
+            float: left;
+            overflow: hidden;
+        }
+        #small-img img{
+            position: relative;
+            border: 1px solid black;
+        }
+        #magnify {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            opacity: 0;
+            filter: alpha(opacity = 50);
+        }
+        #big-img {
+            position: absolute;
+            left: 0;
+            top: 0px;
+            left: 410px;
+            width: 400px;
+            height: 500px;
+            float: left;
+            overflow: hidden;
+            border: 1px solid black;
+            display: none;
+        }
+        #big-img img{
+            position: absolute;
+            left: 0px;
+            right: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="small-img">
+            <img src="1.jpg" alt=""/>
+            <div id="magnify"></div>
+        </div>
+    </div>
+    <div id="big-img">
+        <img src="2.jpg" alt=""/>
+    </div>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oSim = document.getElementById("small-img");
+        var oImg1 = oSim.getElementsByTagName('img')[0];
+        var oBimg = document.getElementById('big-img');
+        var oImg2 = oBimg.getElementsByTagName('img')[0];
+        var oMagnify = document.getElementById('magnify');
+        var radioX = 1;
+        var radioY = 0.75;
+
+
+        oContainer.onmouseover = function (e) {
+            oMagnify.style.opacity = 0.6;
+            oBimg.style.display = 'block';
+            e = e || window.event;
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                //鼠标距离块边的横纵距离
+                var iDisX = e.clientX;
+                var iDisY = e.clientY;
+                oMagnify.style.left = iDisX - 30 +'px';
+                oMagnify.style.top = iDisY - 30 +'px';
+
+                oImg2.style.left = -iDisX * radioX + 'px';
+                oImg2.style.top = -iDisY * radioY + 'px';
+
+            };
+
+        };
+
+
+        oContainer.onmouseout = function () {
+            oMagnify.style.opacity = 0;
+            oBimg.style.display = 'none';
+            alert(a);
+        }
+
+    </script>
+</body>
+</html>
+<!--
+IE6中 无颜色的完全透明的元素无法绑定事件 只有有颜色的透明元素才能绑定事件
+-->
