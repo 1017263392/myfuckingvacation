@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<form action="" id="form">-->
+    <!--<input type="text" name="week"/>-->
+    <!--<input type="submit"/>-->
+<!--</form>-->
+
+<script src="myRandow.js"></script>
+    <script>
+
+        //网页输出
+//        document.write()
+
+
+
+//        prompt()
+
+
+
+//闰年
+//        var today = new Date();
+//        var year = today.getFullYear();
+//        if((year % 4 == 0 && year % 100 !=0) || year % 400 == 0)
+//            console.log("yes");
+//        else
+//            console.log("no");
+
+//判断年龄段
+//        var val = prompt("请输入");
+
+        //10的阶乘
+//        var n = 10;
+//        var buf = 1;
+//        results = 0;
+//        for(var i = 1; i <= n; i++){
+//            buf = 1;
+//            for(var j = 1; j <= i; j++){
+//                buf *= j;
+//            }
+//            results += buf;
+//        }
+//        console.log(results);
+
+        //顺序数字塔
+//        var n = 5;
+//        for(var i = 1; i <= 5; i++){
+//            for(var j = 1; j <= i; j++){
+//                document.write(j + " ");
+//            }
+//            document.write("<br>");
+//            document.write("<br>");
+//        }
+
+        //"*"的塔
+//                var n = 10;
+//                for(var i = 1; i <= n; i++){
+//                    document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+//                    for(var j = 1; j <= n - i; j++){
+//                        document.write("&nbsp;");
+//                    }
+//                    for(var j = 1; j <= i; j++){
+//                        document.write("* ");
+//                    }
+//                    document.write("<br>");
+//                    document.write("<br>");
+//                }
+
+  /*      function hanshu(a){
+            return a*a*4 + 3*a + 2;
+        };
+        var val = prompt("请输入");
+        console.log(hanshu(val));
+        document.write(hanshu(val));*/
+
+/*        var x = prompt("请输入");
+        var y = prompt("请输入");
+        console.log(x < y ? x : y);
+        document.write(x < y ? x : y);
+*/
+//求整除3 5 7 的数
+/*        function getmod(a){
+            if(a % 3 == 0 && a % 7 == 0 && a % 5 == 0)
+                document.write(a + "true");
+            else
+                document.write(a + "false");
+            document.write("<br>");
+            printNum();
+        };
+        function printNum(){
+            for(var i = 1,j = 0; i <= 1000; i++){
+                if(i % 3 == 0 && i % 7 == 0 && i % 5 == 0){
+                    document.write(i + " ");
+                    j++;
+                    if(j % 6 == 0){
+                        document.write("<br>");
+                    }
+                }
+            }
+        };
+        var x = prompt("请输入");
+        getmod(x);*/
+
+        //阶乘做减法
+/*        function factorial(x,y){
+            var xx = 1,yy = 1;
+            for(var i = 1; i <= x; i++){
+                xx *= i;
+            }
+            for(var i = 1; i <= y; i++){
+                yy *= i;
+            }
+
+            document.write(yy + " ");
+            document.write(xx - yy);
+        };
+        factorial(12,10);
+*/
+
+
+
+
+        //斐波那契
+//        function fibonacci(n){
+//            if(n == 1 || n == 2){
+//                return 1;
+//            }
+//            var add1 = 1,add2 = 1,buf;
+//            for(var i = 3; i <= n; i++){
+//                buf = add1;
+//                add1 +=add2;
+//                add2 = buf;
+//            }
+//            return add1;
+//        };
+//        document.write(fibonacci(10));
+
+
+//        var str = "abcdef";
+//        var a = str.charAt(5);
+//        document.write(a);
+
+//        var myarray = new Array(5);
+//        console.log(myarray.length);
+//        var a = 4;
+//        myMath(a);
+//        function myMath(a){
+//            document.write("平方" + Math.pow(a,2) + "<br>平方根" + Math.sqrt(a) + "<br>自然对数" + Math.log(a));
+//
+//        }
+
+        for(var i = 0; i < 100; i++){
+            console.log(random(2,5));
+        }
+
+
+    </script>
+</body>
+</html>
