@@ -153,9 +153,38 @@
 //
 //        }
 
-        for(var i = 0; i < 100; i++){
-            console.log(random(2,5));
-        }
+//        for(var i = 0; i < 100; i++){
+//            console.log(random(2,5));
+//        }
+
+//        var today = new Date();
+//        document.write(today.getFullYear() + "年" +(today.getMonth() + 1) + "月" + today.getDate() + "日" + today.getHours() +"时" +
+//                toda-y.getMinutes() + "分" + today.getSeconds() + "秒 （星期" + today.getDay() + "）");
+//
+
+        //找出字符串里面的数字
+/*        var a = "as1f2a93";
+        CollectDigits(a);
+        function CollectDigits(s){
+            var results = "";
+            for(var i = 0; i < s.length; i++){
+                if(s.charAt(i) <='9' && s.charAt(i) >= '0'){
+                    results += s.charAt(i);
+                }
+            }
+            console.log(results);
+        };*/
+
+        function merge(s1,s2){
+            var results = "";
+            for(var i = 0; i < s1.length || i < s2.length; i++){
+                results = results + s1.charAt(i) + s2.charAt(i);
+            }
+            console.log(results);
+            return results;
+        };
+        var s1 = "123456", s2 = "abc";
+        merge(s1,s2);
 
 
     </script>

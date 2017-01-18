@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #container{
+            width: 1000px;
+            margin: 20px auto;
+            border: 1px solid #000000;
+        }
+        #ground{
+            width: 1000px;
+            height: 500px;
+            background: #cccccc;
+            position: relative;
+        }
+
+        #control{
+            height: 50px;
+            line-height: 50px;
+        }
+
+        #banner{
+            float: left;
+        }
+
+        #buttons{
+            float: right;
+        }
+
+        .block {
+            width: 20px;
+            height: 20px;
+            float: left;
+            background: orange;
+        }
+        .snack {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: red;
+        }
+        .food {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: green;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <div id="ground">
+        </div>
+        <div id="control">
+            <span id="banner">第一个游戏</span>
+            <div id="buttons">
+                <button id="btn-start">开始</button>
+                <button id="btn-pause">暂停</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //创建草场
+        var oGround = document.getElementById('ground');
+        for(var i = 0; i < 50*25; i++){
+            var oDiv = document.createElement('div');
+            oDiv.className = "block";
+            oGround.appendChild(oDiv);
+        }
+
+        //创建蛇
+        var snackBody = [];
+        for(var i = 0; i < 3; i++){
+            var oDiv = document.createElement('div');
+            oDiv.className = 'block snack';
+            oDiv.style.left = (3 - i) * 20 +'px';
+            oDiv.style.top = 40 +'px';
+            oGround.appendChild(oDiv);
+            snackBody.push(oDiv);
+        }
+
+        //食物创建
+        function createFood(){
+            var oDiv = document.createElement('div');
+            oDiv.className = 'block food';
+            var iLeft = iTop = 0;
+            var bFound = true;
+            do{
+                iLeft = Math.floor(Math.random()*50) * 20;
+                iTop = Math.floor(Math.random()*25) * 20;
+                for(var i = 0; i < snackBody.length; i++){
+                    if(iLeft == snackBody[i].offsetLeft && iTop == snakeBody[i].offsetWidth){
+                        bFound = false;
+                        break;
+                    }
+                }
+            }while(!bFound);
+            oDiv.style.left = iLeft + 'px';
+            oDiv.style.top = iTop + 'px';
+            oGround.appendChild(oDiv);
+        }
+        createFood();
+
+        //蛇移动
+        var direction = 'right';
+        var timer;
+        var oBtnStart = document.getElementById('btn-start');
+
+        function moveHead(snackHead){
+            if(direction == 'right'){
+                snackHead.style.left = snackHead.offsetLeft + 20 + 'px';
+            }
+            if(direction == 'left'){
+                snackHead.style.left = snackHead.offsetLeft - 20 + 'px';
+            }
+            if(direction == 'up'){
+                snackHead.style.top = snackHead.offsetTop - 20 + 'px';
+            }
+            if(direction == 'down'){
+                snackHead.style.top = snackHead.offsetTop + 20 + 'px';
+            }
+        };
+
+
+        function move(){
+            for(var i = 0; i < snackBody.length; i++){
+                snackBody[i].left = snackBody[i].offsetLeft;
+                snackBody[i].top = snackBody[i].offsetTop;
+            }
+
+            var snackHead = snackBody[0];
+            moveHead(snackHead);
+
+
+
+
+        };
+
+        oBtnStart.onclick = function () {
+            move();
+        };
+
+
+        //吃食物
+
+
+
+
+
+
+        //结束游戏
+
+
+
+    </script>
+</body>
+</html>

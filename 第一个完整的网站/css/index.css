@@ -1,0 +1,44 @@
+/*news¿ªÊ¼*/
+#news .wrapper{
+    height: 152px;
+    padding: 12px;
+}
+
+#recently-trends {
+    float: left;
+    width: 640px;
+    height: 136px;
+}
+
+#recently-trends .head{
+    height: 36px;
+    width: 640px;
+}
+
+#recently-trends .head h3{
+    float: left;
+    color: #333;
+    font-size: 16px;
+}
+
+#recently-trends .head a{
+    float: right;
+}
+
+#announcenent {
+    float: right;
+}
+/*news½áÊø*/
+
+
+
+
+
+
+
+
+
+
+
+
+
